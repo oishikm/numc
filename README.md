@@ -5,4 +5,5 @@ Functionalities completed:
 None
 
 Currently under development:  
-rot90
+reshape2d
+

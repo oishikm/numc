@@ -2,9 +2,7 @@
 
 int main()
 {
-	int **throw, **in;
-	in = NULL;
-	throw = rot90(in, 4, 5, 1);
-	printf("%d", *throw);
+	/* Waiting for numc features */
+	printf("\nHello, World!");
 	return 0;
 }
