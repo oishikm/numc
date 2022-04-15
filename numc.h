@@ -8,16 +8,28 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int** reshape2d(int** inarr, int r, int c, int n_r, int n_c)
+int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 {
 	/* r = rows, c = columns */
-	/* n_r = new rows, n_c = new columns */
+	/* nr = new rows, nc = new columns */
 		
-	int** outarr = (int **)malloc(n_r * sizeof(int *));
-	register int i;
-	for(i=0; i<r; i++)
+	int** outarr = (int **)malloc(nr * sizeof(int *));
+	register int i, j, ni, nj;
+	for(i=0; i<nr; i++)
 	{
-		outarr[i] = (int *)malloc(n_c * sizeof(int));
+		outarr[i] = (int *)malloc(nc * sizeof(int));
 	}
-	
+	printf("\nAllocated");
+	/* Checkpoint : DEBUG : Transfer */
+	for(i=0, ni=0; i<r, ni<nr; i++, ni++)
+	{
+		printf("\nTransfer to row %d", ni);
+		for(j=0, nj=0; j<c, nj<nc; j++, nj++)
+		{
+			printf("\nTransfer to column %d", nj);
+			outarr[ni][nj] = inarr[i][j];
+		}
+	}
+	printf("\nSending");
+	return outarr;
 }
