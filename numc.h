@@ -8,6 +8,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+void numc_exception(char* message)
+{
+	printf("\n[ERROR] %s\n", message);
+	exit(0);
+}
+
 int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 {
 	/* r = rows, c = columns */
@@ -35,9 +41,10 @@ int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 	}
 	else
 	{
-		printf("\nError: Input and Output arrays do not have equal size."
+		char msg[100];
+		sprintf(msg, "Error: Input and Output arrays do not have equal size."
 				"\n[INFO] Input array has %d bytes while Output array has %d bytes.\n", 
 				r*c*sizeof(int), nr*nc*sizeof(int));
-		exit(0);
+		numc_exception(msg);		
 	}
 }
