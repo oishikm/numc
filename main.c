@@ -58,6 +58,24 @@ int main()
 		printf("\n");
 	}
 
+	/* Testing fill2d() */
+	int **fillarr;
+	int fill = 0;
+	printf("\nEnter size of filled array (r c) : ");
+	scanf(" %d %d", &r, &c);
+	printf("\nEnter fill value (int) : ");
+	scanf(" %d", &fill);
+	fillarr = fill2d(r, c, fill);
+	printf("\n[INFO] Filled Array\n\n");	
+	for(i=0; i<r; i++) 
+	{
+		for(j=0; j<c; j++)
+		{
+			printf("%5d ", fillarr[i][j]);
+		}
+		printf("\n");
+	}
+
 	/* End all tests */
 	return 0;
 }

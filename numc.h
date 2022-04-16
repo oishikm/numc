@@ -61,3 +61,16 @@ int** zeros2d(int r, int c)
 	}
 	return outarr;
 }
+
+int** fill2d(int r, int c, int fill)
+{
+	register int i, j;
+	int** outarr = (int **)malloc(r * sizeof(int *));
+	for(i=0; i<r; i++)
+	{
+		outarr[i] = (int *)malloc(c * sizeof(int));
+		for(j=0; j<c; j++)
+			outarr[i][j] = fill;
+	}
+	return outarr;
+}
