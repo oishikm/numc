@@ -6,4 +6,5 @@ Functionalities completed:
 * zeros2d
 
 Currently under development:  
+* fill2d
 * rot90
