@@ -43,6 +43,21 @@ int main()
 		printf("\n");
 	}
 
+	/* Testing zeros2d() */
+	int **zerosarr;
+	printf("\nEnter size of zeros array (r c) : ");
+	scanf(" %d %d", &r, &c);
+	zerosarr = zeros2d(r, c);
+	printf("\n[INFO] Zeros Array\n\n");	
+	for(i=0; i<r; i++) 
+	{
+		for(j=0; j<c; j++)
+		{
+			printf("%5d ", zerosarr[i][j]);
+		}
+		printf("\n");
+	}
+
 	/* End all tests */
 	return 0;
 }

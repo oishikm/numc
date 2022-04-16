@@ -48,3 +48,16 @@ int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 		numc_exception(msg);		
 	}
 }
+
+int** zeros2d(int r, int c)
+{
+	register int i, j;
+	int** outarr = (int **)malloc(r * sizeof(int *));
+	for(i=0; i<r; i++)
+	{
+		outarr[i] = (int *)malloc(c * sizeof(int));
+		for(j=0; j<c; j++)
+			outarr[i][j] = 0;
+	}
+	return outarr;
+}
