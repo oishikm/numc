@@ -75,58 +75,20 @@ int** fill2d(int r, int c, int fill)
 	return outarr;
 }
 
-/* 	Declaration for non-user-facing function for anti-clockwise rotation*/
-int** rot90_anticlkwise(int **inarr, int r, int k);
-
 int** rot90(int **inarr, int r, int k)	
 /*
- * 	rotate 2d square matrix 90*k degrees 
+ * 	rotate 2d square matrix 90*k degrees
+ *	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
  */
 {
-	/* r = rows, k = times */
-	if(k<0)	/* Anti-clockwise */
-		return rot90_anticlkwise(inarr, r, -k);
-	
-	else
-	{
-		/* r = rows, k = times (anti-clockwise) */
-		register int i, j, l, rot_iter, temp;
-		k %= 4;
-
-		int** outarr = (int **)malloc(r * sizeof(int *));	
-		int** temparr = (int **)malloc(r * sizeof(int *));
-		for(i=0; i<r; i++)
-		{
-			outarr[i] = (int *)malloc(r * sizeof(int));
-			temparr[i] = (int *)malloc(r * sizeof(int));
-			for(j=0; j<r; j++)
-				temparr[i][j] = inarr[i][j];
-				outarr[i][j] = inarr[i][j];
-		}
-
-		for(rot_iter=0; rot_iter<k; rot_iter++)
-		{
-			for(i=0; i<r; i++)
-				for(j=0; j<r; j++)
-					outarr[j][r-i-1] = temparr[i][j];
-			for(i=0; i<r; i++)
-				for(j=0; j<r; j++)
-					temparr[i][j] = outarr[i][j];
-		}
-
-		return outarr;
-	}
-}
-
-int** rot90_anticlkwise(int **inarr, int r, int k)	
-/* 	
- *	rotate 2d square matrix -90*k degrees
- *	Should not be user-facing
- *	User should use rot90() with k<0 for anti-clockwise rotation
- */
-{
-	/* r = rows, k = times (anti-clockwise) */
+	/* r = rows, k = times */	
 	register int i, j, l, rot_iter, temp;
+	int anticlkflag = 0;
+	if(k<0)
+	{
+		anticlkflag = 1;
+		k = -k;
+	}
 	k %= 4;
 
 	int** outarr = (int **)malloc(r * sizeof(int *));	
@@ -144,7 +106,10 @@ int** rot90_anticlkwise(int **inarr, int r, int k)
 	{
 		for(i=0; i<r; i++)
 			for(j=0; j<r; j++)
-				outarr[i][j] = temparr[j][r-i-1];
+			{
+				if(!anticlkflag) outarr[j][r-i-1] = temparr[i][j];
+				else outarr[i][j] = temparr[j][r-i-1];
+			}
 		for(i=0; i<r; i++)
 			for(j=0; j<r; j++)
 				temparr[i][j] = outarr[i][j];
