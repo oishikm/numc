@@ -9,10 +9,10 @@ Functionalities completed:
 Currently under development:  
 * rot90
 
-##Suggested compilation commands  
+## Suggested compilation commands  
 
 Windows:  
-gcc main.c -o win-dist/xmain  
+```gcc main.c -o win-dist/xmain```  
 
 Linux/WSL:  
-gcc main.c -o linux-dist/xmain  
+```gcc main.c -o linux-dist/xmain```  
