@@ -5,9 +5,10 @@ Functionalities completed:
 * reshape2d
 * zeros2d
 * fill2d
+* rot90
 
 Currently under development:  
-* rot90
+* None, please feel free to drop a suggestion.
 
 ## Suggested compilation commands  
 
