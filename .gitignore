@@ -1,2 +1,3 @@
-xmain.exe
+win-dist/xmain.exe
+linux-dist/xmain
 .git
