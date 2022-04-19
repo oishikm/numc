@@ -76,6 +76,46 @@ int main()
 		printf("\n");
 	}
 
+	/* Testing rot90() */
+	int **arr_square; 
+	int **rotated_arr;
+	int n;
+
+	printf("\n[INFO] Original Array to be rotated will be auto-populated.\n");
+	printf("\nEnter size of original array (square matrix) (r) : ");
+	scanf(" %d", &r);
+	printf("\nEnter number of times to be rotated (enter negative value for anti-clockwise rotation) : ");
+	scanf(" %d", &n);
+
+	arr_square = (int **)malloc(r * sizeof(int *));
+	for(i=0; i<r; i++)
+	{
+		arr_square[i] = (int *)malloc(r * sizeof(int));
+	}
+
+	printf("\n[INFO] Original Array\n\n");
+	for(i=0, k=0; i<r; i++) 
+	{
+		for(j=0; j<r; j++)
+		{
+			arr_square[i][j] = ++k;
+			printf("%5d ", arr_square[i][j]);
+		}
+		printf("\n");
+	}
+
+	rotated_arr = rot90(arr_square, r, n);
+
+	printf("\n[INFO] Rotated Array\n\n");	
+	for(i=0; i<r; i++) 
+	{
+		for(j=0; j<r; j++)
+		{
+			printf("%5d ", rotated_arr[i][j]);
+		}
+		printf("\n");
+	}
+
 	/* End all tests */
 	return 0;
 }
