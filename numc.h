@@ -107,8 +107,8 @@ int** rot90(int **inarr, int r, int k)
 		for(i=0; i<r; i++)
 			for(j=0; j<r; j++)
 			{
-				if(!anticlkflag) outarr[j][r-i-1] = temparr[i][j];
-				else outarr[i][j] = temparr[j][r-i-1];
+				if(!anticlkflag)	outarr[j][r-i-1] = temparr[i][j];
+				else				outarr[i][j] = temparr[j][r-i-1];
 			}
 		for(i=0; i<r; i++)
 			for(j=0; j<r; j++)
