@@ -98,7 +98,10 @@ int** rot90(int **inarr, int r, int k)
 		outarr[i] = (int *)malloc(r * sizeof(int));
 		temparr[i] = (int *)malloc(r * sizeof(int));
 		for(j=0; j<r; j++)
+		{
 			temparr[i][j] = inarr[i][j];
+			outarr[i][j] = inarr[i][j];
+		}
 	}
 
 	for(rot_iter=0; rot_iter<k; rot_iter++)
