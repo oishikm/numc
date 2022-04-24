@@ -17,14 +17,6 @@ typedef struct _array2d
 	int r, c;
 } array2d;
 
-void numc_exception(char *);
-void _free2d(int **, int);
-int** _reshape2d(int **, int, int, int, int);
-int** _zeros2d(int, int);
-int** _fill2d(int, int, int);
-int** _rot90(int **, int, int);
-int** _slice2d(int**, int, int, int, int, int, int);
-
 void free2d(array2d *inarr)
 {
 	_free2d(inarr->arr, inarr->r);
