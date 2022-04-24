@@ -55,9 +55,9 @@ array2d fill2d(int r, int c, int fill)
 array2d rot90(array2d inarr, int k)
 {
 	/*
-	* 	rotate 2d square matrix 90*k degrees
-	*	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
-	*/
+	 * 	rotate 2d square matrix 90*k degrees
+	 *	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
+	 */
 	array2d outarr;
 	outarr.r = inarr.r;
 	outarr.c = inarr.c;
