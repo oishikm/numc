@@ -13,7 +13,7 @@ Currently under development:
 ## Suggested compilation commands  
 
 Windows:  
-```gcc main.c -Wall -o win-dist/xmain```  
+```gcc main.c -Wall -o win-dist\xmain.exe```  
 
 Linux/WSL:  
 ```gcc main.c -Wall -o linux-dist/xmain```  
