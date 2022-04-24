@@ -10,12 +10,13 @@ Functionalities completed:
 
 Currently under development:  
 * None, please feel free to drop a suggestion.
+  
+## Suggested Compilation Recommendations
 
-## Compilation Recommendations
-
-Windows/DOS:  
+### Windows:  
 ```make -f make.win```  
+  
 (To install ```make``` on Windows use ```winget install GnuWin32.Make```)
   
-Linux/WSL:  
+### Linux/WSL:  
 ```make```
