@@ -1,7 +1,11 @@
 /*
  *	numc.h
  *	Inspired by python module "numpy".
+ *
  *	Oishik Mukhopadhyay | 15 April 2022 
+ *
+ * numc.h provides a wrapper (array2d) for C's 2D Array (int[][] i.e. int**)
+ * If you wish to use numc features directly on int**, use definitions from libnumc.h
  */
 
 #pragma once
@@ -53,11 +57,11 @@ array2d fill2d(int r, int c, int fill)
 }
 
 array2d rot90(array2d inarr, int k)
+/*
+ * 	rotate 2d square matrix 90*k degrees
+ *	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
+ */
 {
-	/*
-	 * 	rotate 2d square matrix 90*k degrees
-	 *	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
-	 */
 	array2d outarr;
 	outarr.r = inarr.r;
 	outarr.c = inarr.c;
@@ -67,12 +71,7 @@ array2d rot90(array2d inarr, int k)
 
 void alloc2d(array2d *inarr, int r, int c)
 {
-	register int i;
 	inarr->r = r;
 	inarr->c = c;
-	inarr->arr = (int **)malloc(r * sizeof(int *));
-	for(i=0; i<r; i++)
-	{
-		inarr->arr[i] = (int *)malloc(c * sizeof(int));
-	}
+	inarr->arr = _alloc2d(r, c);
 }

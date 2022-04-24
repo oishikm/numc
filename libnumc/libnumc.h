@@ -2,10 +2,10 @@
  *	libnumc.h
  *	Library definitions for numc.h
  *
+ *	Oishik Mukhopadhyay | 24 April 2022 
+ *
  *	Originally a part of numc.h, these definitions have
  *	been moved here for better readability of numc.h
- *
- *	Oishik Mukhopadhyay | 24 April 2022 
  */
 
 #pragma once
@@ -27,6 +27,21 @@ void _free2d(int **arrptr, int r)
 	arrptr = NULL;
 }
 
+int** _alloc2d(int r, int c)
+{
+	register int i;
+	int** arrptr = (int **)malloc(r * sizeof(int *));
+	for(i=0; i<r; i++)
+		arrptr[i] = (int *)malloc(c * sizeof(int));
+	return arrptr;
+}
+
+int* _alloc1d(int r)
+{
+	int* arrptr = (int *)malloc(r * sizeof(int));
+	return arrptr;
+}
+
 int** _reshape2d(int **inarr, int r, int c, int nr, int nc)
 {
 	/* r = rows, c = columns */
@@ -43,13 +58,8 @@ int** _reshape2d(int **inarr, int r, int c, int nr, int nc)
 
 	register int i, j, k;
 	
-	int* temp1d = (int *)malloc(r * c * sizeof(int));				
-	int** outarr = (int **)malloc(nr * sizeof(int *));	
-
-	for(i=0; i<nr; i++)
-	{
-		outarr[i] = (int *)malloc(nc * sizeof(int));
-	}
+	int* temp1d = _alloc1d(r*c);
+	int** outarr = _alloc2d(nr, nc);
 
 	for(i=0, k=0; i<r; i++)
 		for(j=0; j<c; j++)
@@ -65,26 +75,20 @@ int** _reshape2d(int **inarr, int r, int c, int nr, int nc)
 int** _zeros2d(int r, int c)
 {
 	register int i, j;
-	int** outarr = (int **)malloc(r * sizeof(int *));
+	int** outarr = _alloc2d(r, c);
 	for(i=0; i<r; i++)
-	{
-		outarr[i] = (int *)malloc(c * sizeof(int));
 		for(j=0; j<c; j++)
 			outarr[i][j] = 0;
-	}
 	return outarr;
 }
 
 int** _fill2d(int r, int c, int fill)
 {
 	register int i, j;
-	int** outarr = (int **)malloc(r * sizeof(int *));
+	int** outarr = _alloc2d(r, c);
 	for(i=0; i<r; i++)
-	{
-		outarr[i] = (int *)malloc(c * sizeof(int));
 		for(j=0; j<c; j++)
 			outarr[i][j] = fill;
-	}
 	return outarr;
 }
 
@@ -104,12 +108,10 @@ int** _rot90(int **inarr, int r, int k)
 	}
 	k %= 4;
 
-	int** outarr = (int **)malloc(r * sizeof(int *));	
-	int** temparr = (int **)malloc(r * sizeof(int *));
+	int** outarr = _alloc2d(r, r);	
+	int** temparr = _alloc2d(r, r);
 	for(i=0; i<r; i++)
 	{
-		outarr[i] = (int *)malloc(r * sizeof(int));
-		temparr[i] = (int *)malloc(r * sizeof(int));
 		for(j=0; j<r; j++)
 		{
 			temparr[i][j] = inarr[i][j];
