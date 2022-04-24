@@ -15,7 +15,7 @@ Currently under development:
 
 Windows/DOS:  
 ```make -f make.win```  
-(To install make on Windows use ```winget install GnuWin32.Make```)
+(To install ```make``` on Windows use ```winget install GnuWin32.Make```)
   
 Linux/WSL:  
 ```make```
