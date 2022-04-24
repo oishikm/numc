@@ -14,6 +14,15 @@ void numc_exception(char* message)
 	exit(0);
 }
 
+void numc_free2d(int **arrptr, int r)
+{
+	register int i;
+	for(i=0; i<r; i++)
+		free(arrptr[i]);	
+	free(arrptr);
+	arrptr = NULL;
+}
+
 int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 {
 	/* r = rows, c = columns */
@@ -41,12 +50,13 @@ int** reshape2d(int **inarr, int r, int c, int nr, int nc)
 	}
 	else
 	{
-		char msg[100];
+		char msg[200];
 		sprintf(msg, "Error: Input and Output arrays do not have equal size."
-				"\n[INFO] Input array has %d bytes while Output array has %d bytes.\n", 
-				r*c*sizeof(int), nr*nc*sizeof(int));
+				"\n[INFO] Input array has size %d elements while Output array has %d elements.\n", 
+				r*c, nr*nc);
 		numc_exception(msg);		
 	}
+	return NULL; /* To satisfy gcc compiler warning on linux, control should not reach here */
 }
 
 int** zeros2d(int r, int c)
@@ -82,7 +92,7 @@ int** rot90(int **inarr, int r, int k)
  */
 {
 	/* r = rows, k = times */	
-	register int i, j, l, rot_iter, temp;
+	register int i, j, rot_iter;
 	int anticlkflag = 0;
 	if(k<0)
 	{

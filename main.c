@@ -43,6 +43,10 @@ int main()
 		printf("\n");
 	}
 
+	/* Garbage collection */
+	numc_free2d(arr, r);
+	numc_free2d(reshaped_arr, nr);
+
 	/* Testing zeros2d() */
 	int **zerosarr;
 	printf("\nEnter size of zeros array (r c) : ");
@@ -57,6 +61,9 @@ int main()
 		}
 		printf("\n");
 	}
+
+	/* Garbage collection */
+	numc_free2d(zerosarr, r);
 
 	/* Testing fill2d() */
 	int **fillarr;
@@ -75,6 +82,9 @@ int main()
 		}
 		printf("\n");
 	}
+
+	/* Garbage collection */
+	numc_free2d(fillarr, r);
 
 	/* Testing rot90() */
 	int **arr_square; 
@@ -115,6 +125,10 @@ int main()
 		}
 		printf("\n");
 	}
+
+	/* Garbage collection */
+	numc_free2d(arr_square, r);
+	numc_free2d(rotated_arr, r);
 
 	/* End all tests */
 	return 0;
