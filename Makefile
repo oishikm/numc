@@ -1,4 +1,4 @@
-# For Linux or WSL
+# For Linux/WSL
 # Oishik Mukhopadhyay | 24 April 2022
 
 install:
