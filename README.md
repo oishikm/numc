@@ -6,14 +6,7 @@ Functionalities completed:
 * zeros2d
 * fill2d
 * rot90
-
-Currently under development:  
 * slice2d
 
-## Suggested compilation commands  
-
-Windows:  
-```gcc main.c -Wall -o win-dist\xmain.exe```  
-
-Linux/WSL:  
-```gcc main.c -Wall -o linux-dist/xmain```  
+Currently under development:  
+* None, please feel free to drop a suggestion.

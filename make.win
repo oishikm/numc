@@ -1,0 +1,8 @@
+# For Linux or WSL
+# Oishik Mukhopadhyay | 24 April 2022
+
+install:
+	gcc main.c -Wall -o win-dist\xmain.exe
+clean:
+	rm linux-dist/xmain
+
