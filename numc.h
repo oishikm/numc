@@ -36,20 +36,20 @@ array2d reshape2d(array2d inarr, int nr, int nc)
 
 array2d zeros2d(int r, int c)
 {
-	array2d array;
-	array.r = r;
-	array.c = c;
-	array.arr = _zeros2d(r, c);
-	return array;
+	array2d outarr;
+	outarr.r = r;
+	outarr.c = c;
+	outarr.arr = _zeros2d(r, c);
+	return outarr;
 }
 
 array2d fill2d(int r, int c, int fill)
 {
-	array2d array;
-	array.r = r;
-	array.c = c;
-	array.arr = _fill2d(r, c, fill);
-	return array;
+	array2d outarr;
+	outarr.r = r;
+	outarr.c = c;
+	outarr.arr = _fill2d(r, c, fill);
+	return outarr;
 }
 
 array2d rot90(array2d inarr, int k)
