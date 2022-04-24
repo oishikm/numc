@@ -18,14 +18,33 @@ void numc_exception(char* message)
 	exit(0);
 }
 
-void numc_index_sanity(int* r, int* c)
+void numc_info(char* message)
 {
-	if(*r<0) *r = -*r;
-	if(*c<0) *c = -*c;
+	printf("\n[INFO] NumCInfo: %s\n", message);
+}
+
+void numc_index_sanity_1d(int* index)
+{
+	if(*index < 0)
+	{
+		*index = -*index;
+		char msg[200];
+		sprintf(msg, "Index Sanity Check had to change an index."
+				"\n[INFO] %d has been converted to %d.\n", 
+				-*index, *index);
+		numc_info(msg);
+	}
+}
+
+void numc_index_sanity_2d(int* r, int* c)
+{
+	numc_index_sanity_1d(r);
+	numc_index_sanity_1d(c);
 }
 
 void _free2d(int **arrptr, int r)
 {
+	numc_index_sanity_1d(&r);
 	register int i;
 	for(i=0; i<r; i++)
 		free(arrptr[i]);	
@@ -36,8 +55,7 @@ void _free2d(int **arrptr, int r)
 int** _alloc2d(int r, int c)
 {
 	register int i;
-	if(r<0) r = -r;
-	if(c<0) c = -c;
+	numc_index_sanity_2d(&r, &c);
 	int** arrptr = (int **)malloc(r * sizeof(int *));
 	for(i=0; i<r; i++)
 		arrptr[i] = (int *)malloc(c * sizeof(int));
@@ -46,6 +64,7 @@ int** _alloc2d(int r, int c)
 
 int* _alloc1d(int r)
 {
+	numc_index_sanity_1d(&r);
 	int* arrptr = (int *)malloc(r * sizeof(int));
 	return arrptr;
 }
@@ -163,12 +182,7 @@ int** _slice2d(int** inarr, int r, int c, int x1, int x2, int y1, int y2)
 		numc_exception(msg);		
 	}	
 
-	if(x1<0) x1 = 0;
-	if(x2<0) x2 = 0;
-	if(y1<0) y1 = 0;
-	if(y2<0) y2 = 0;
-
-	if(x2<=x1 || y2<=y1)
+	if(x2 <= x1 || y2 <= y1)
 	{
 		char msg[200];
 		sprintf(msg, "Negative or Zero slice size."

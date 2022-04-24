@@ -128,9 +128,9 @@ int main()
 	printf("\n[INFO] Original Array to be sliced will be auto-populated.\n");
 	printf("\nEnter size of original array (r c) : ");
 	scanf(" %d %d", &r, &c);	
-	printf("\nEnter slice indices for axis_0 (x1 x2) : ");
+	printf("\nEnter slice indices for axis_0 (x1(0 to %d) x2(1 to %d)) : ", r-1, r);
 	scanf(" %d %d", &x1, &x2);
-	printf("\nEnter slice indices for axis_1 (y1 y2) : ");
+	printf("\nEnter slice indices for axis_1 (y1(0 to %d) y2(1 to %d)) : ", c-1, c);
 	scanf(" %d %d", &y1, &y2);
 
 	alloc2d(&arr, r, c);

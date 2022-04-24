@@ -32,7 +32,7 @@ void free2d(array2d *inarr)
 
 array2d reshape2d(array2d inarr, int nr, int nc)
 {
-	numc_index_sanity(&nr, &nc);
+	numc_index_sanity_2d(&nr, &nc);
 	array2d outarr;
 	outarr.r = nr;
 	outarr.c = nc;
@@ -42,7 +42,7 @@ array2d reshape2d(array2d inarr, int nr, int nc)
 
 array2d zeros2d(int r, int c)
 {
-	numc_index_sanity(&r, &c);
+	numc_index_sanity_2d(&r, &c);
 	array2d outarr;
 	outarr.r = r;
 	outarr.c = c;
@@ -52,7 +52,7 @@ array2d zeros2d(int r, int c)
 
 array2d fill2d(int r, int c, int fill)
 {
-	numc_index_sanity(&r, &c);
+	numc_index_sanity_2d(&r, &c);
 	array2d outarr;
 	outarr.r = r;
 	outarr.c = c;
@@ -75,7 +75,7 @@ array2d rot90(array2d inarr, int k)
 
 void alloc2d(array2d *inarr, int r, int c)
 {
-	numc_index_sanity(&r, &c);
+	numc_index_sanity_2d(&r, &c);
 	inarr->r = r;
 	inarr->c = c;
 	inarr->arr = _alloc2d(r, c);
@@ -84,6 +84,8 @@ void alloc2d(array2d *inarr, int r, int c)
 array2d slice2d(array2d inarr, int x1, int x2, int y1, int y2)
 {
 	array2d outarr;
+	numc_index_sanity_2d(&x1, &x2);
+	numc_index_sanity_2d(&y1, &y2);
 	outarr.r = x2 - x1;
 	outarr.c = y2 - y1;
 	outarr.arr = _slice2d(inarr.arr, inarr.r, inarr.c, x1, x2, y1, y2);
