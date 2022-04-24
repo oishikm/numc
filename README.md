@@ -14,10 +14,10 @@ Currently under development:
   
 ## Suggested Compilation Recommendations
 
-### Windows:  
-```make -f make.win```  
+- ### Windows:  
+  ```make -f make.win```  
   
-(To install ```make``` on Windows use ```winget install GnuWin32.Make```)
+  (To install ```make``` on Windows use ```winget install GnuWin32.Make```)
   
-### Linux/WSL:  
-```make```
+- ### Linux/WSL:  
+  ```make```
