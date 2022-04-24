@@ -8,7 +8,7 @@ Functionalities completed:
 * rot90
 
 Currently under development:  
-* None, please feel free to drop a suggestion.
+* slice2d
 
 ## Suggested compilation commands  
 
