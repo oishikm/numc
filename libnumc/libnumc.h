@@ -60,7 +60,7 @@ int** _reshape2d(int **inarr, int r, int c, int nr, int nc)
 				r*c, nr*nc);
 		numc_exception(msg);		
 	}
-	return NULL; /* To satisfy gcc compiler warning on linux, control should not reach here */
+	return NULL; /* Control should not reach here, this line is to satisfy gcc (warning on -Wall) on linux */
 }
 
 int** _zeros2d(int r, int c)
