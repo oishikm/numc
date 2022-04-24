@@ -11,6 +11,7 @@ Functionalities completed:
 Currently under development:  
 * None, please feel free to drop a suggestion.
   
+  
 ## Suggested Compilation Recommendations
 
 ### Windows:  
