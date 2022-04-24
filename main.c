@@ -17,9 +17,9 @@ int main()
 	alloc2d(&arr, r, c);
 
 	printf("\n[INFO] Original Array\n\n");
-	for(i=0, k=0; i<r; i++) 
+	for(i=0, k=0; i<arr.r; i++) 
 	{
-		for(j=0; j<c; j++)
+		for(j=0; j<arr.c; j++)
 		{
 			arr.arr[i][j] = ++k;
 			printf("%5d ", arr.arr[i][j]);
@@ -30,9 +30,9 @@ int main()
 	reshaped_arr = reshape2d(arr, nr, nc);
 
 	printf("\n[INFO] Reshaped Array\n\n");	
-	for(i=0; i<nr; i++) 
+	for(i=0; i<reshaped_arr.r; i++) 
 	{
-		for(j=0; j<nc; j++)
+		for(j=0; j<reshaped_arr.c; j++)
 		{
 			printf("%5d ", reshaped_arr.arr[i][j]);
 		}
@@ -49,9 +49,9 @@ int main()
 	scanf(" %d %d", &r, &c);
 	zerosarr = zeros2d(r, c);
 	printf("\n[INFO] Zeros Array\n\n");	
-	for(i=0; i<r; i++) 
+	for(i=0; i<zerosarr.r; i++) 
 	{
-		for(j=0; j<c; j++)
+		for(j=0; j<zerosarr.c; j++)
 		{
 			printf("%5d ", zerosarr.arr[i][j]);
 		}
@@ -70,9 +70,9 @@ int main()
 	scanf(" %d", &fill);
 	fillarr = fill2d(r, c, fill);
 	printf("\n[INFO] Filled Array\n\n");	
-	for(i=0; i<r; i++) 
+	for(i=0; i<fillarr.r; i++) 
 	{
-		for(j=0; j<c; j++)
+		for(j=0; j<fillarr.c; j++)
 		{
 			printf("%5d ", fillarr.arr[i][j]);
 		}
@@ -96,9 +96,9 @@ int main()
 	alloc2d(&arr_square, r, r);
 
 	printf("\n[INFO] Original Array\n\n");
-	for(i=0, k=0; i<r; i++) 
+	for(i=0, k=0; i<arr_square.r; i++) 
 	{
-		for(j=0; j<r; j++)
+		for(j=0; j<arr_square.c; j++)
 		{
 			arr_square.arr[i][j] = ++k;
 			printf("%5d ", arr_square.arr[i][j]);
@@ -109,9 +109,9 @@ int main()
 	rotated_arr = rot90(arr_square, n);
 
 	printf("\n[INFO] Rotated Array\n\n");	
-	for(i=0; i<r; i++) 
+	for(i=0; i<rotated_arr.r; i++) 
 	{
-		for(j=0; j<r; j++)
+		for(j=0; j<rotated_arr.c; j++)
 		{
 			printf("%5d ", rotated_arr.arr[i][j]);
 		}
@@ -136,9 +136,9 @@ int main()
 	alloc2d(&arr, r, c);
 
 	printf("\n[INFO] Original Array\n\n");
-	for(i=0, k=0; i<r; i++) 
+	for(i=0, k=0; i<arr.r; i++) 
 	{
-		for(j=0; j<c; j++)
+		for(j=0; j<arr.c; j++)
 		{
 			arr.arr[i][j] = ++k;
 			printf("%5d ", arr.arr[i][j]);

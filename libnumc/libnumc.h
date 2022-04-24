@@ -18,6 +18,12 @@ void numc_exception(char* message)
 	exit(0);
 }
 
+void numc_index_sanity(int* r, int* c)
+{
+	if(*r<0) *r = -*r;
+	if(*c<0) *c = -*c;
+}
+
 void _free2d(int **arrptr, int r)
 {
 	register int i;
@@ -30,6 +36,8 @@ void _free2d(int **arrptr, int r)
 int** _alloc2d(int r, int c)
 {
 	register int i;
+	if(r<0) r = -r;
+	if(c<0) c = -c;
 	int** arrptr = (int **)malloc(r * sizeof(int *));
 	for(i=0; i<r; i++)
 		arrptr[i] = (int *)malloc(c * sizeof(int));
