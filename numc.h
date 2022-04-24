@@ -5,132 +5,70 @@
  */
 
 #pragma once
-#include<stdio.h>
-#include<stdlib.h>
+#include "libnumc/libnumc.h"
 
-void numc_exception(char* message)
+typedef struct _array2d
 {
-	printf("\n[ERROR] %s\n", message);
-	exit(0);
+	int **arr;
+	int r, c;
+} array2d;
+
+void numc_exception(char *);
+void _free2d(int **, int);
+int** _reshape2d(int **, int, int, int, int);
+int** _zeros2d(int, int);
+int** _fill2d(int, int, int);
+int** _rot90(int **, int, int);
+
+void free2d(array2d *inarr)
+{
+	_free2d(inarr->arr, inarr->r);
 }
 
-void numc_free2d(int **arrptr, int r)
+array2d reshape2d(array2d inarr, int nr, int nc)
+{
+	array2d outarr;
+	outarr.r = nr;
+	outarr.c = nc;
+	outarr.arr = _reshape2d(inarr.arr, inarr.r, inarr.c, nr, nc);
+	return outarr;
+}
+
+array2d zeros2d(int r, int c)
+{
+	array2d array;
+	array.r = r;
+	array.c = c;
+	array.arr = _zeros2d(r, c);
+	return array;
+}
+
+array2d fill2d(int r, int c, int fill)
+{
+	array2d array;
+	array.r = r;
+	array.c = c;
+	array.arr = _fill2d(r, c, fill);
+	return array;
+}
+
+array2d rot90(array2d inarr, int k)
+{
+	array2d outarr;
+	outarr.r = inarr.r;
+	outarr.c = inarr.c;
+	outarr.arr = _rot90(inarr.arr, inarr.r, k);
+	return outarr;
+}
+
+void alloc2d(array2d *inarr, int r, int c)
 {
 	register int i;
-	for(i=0; i<r; i++)
-		free(arrptr[i]);	
-	free(arrptr);
-	arrptr = NULL;
-}
-
-int** reshape2d(int **inarr, int r, int c, int nr, int nc)
-{
-	/* r = rows, c = columns */
-	/* nr = new rows, nc = new columns */
-	if(r*c == nr*nc)
-	{	
-		register int i, j, k;
-		
-		int* temp1d = (int *)malloc(r * c * sizeof(int));				
-		int** outarr = (int **)malloc(nr * sizeof(int *));		
-		for(i=0; i<nr; i++)
-		{
-			outarr[i] = (int *)malloc(nc * sizeof(int));
-		}
-
-		for(i=0, k=0; i<r; i++)
-			for(j=0; j<c; j++)
-				temp1d[k++] = inarr[i][j];
-		
-		for(i=0, k=0; i<nr; i++)
-			for(j=0; j<nc; j++)
-				outarr[i][j] = temp1d[k++];
-		
-		return outarr;
-	}
-	else
-	{
-		char msg[200];
-		sprintf(msg, "Error: Input and Output arrays do not have equal size."
-				"\n[INFO] Input array has size %d elements while Output array has %d elements.\n", 
-				r*c, nr*nc);
-		numc_exception(msg);		
-	}
-	return NULL; /* To satisfy gcc compiler warning on linux, control should not reach here */
-}
-
-int** zeros2d(int r, int c)
-{
-	register int i, j;
-	int** outarr = (int **)malloc(r * sizeof(int *));
+	inarr->r = r;
+	inarr->c = c;
+	inarr->arr = (int **)malloc(r * sizeof(int *));
 	for(i=0; i<r; i++)
 	{
-		outarr[i] = (int *)malloc(c * sizeof(int));
-		for(j=0; j<c; j++)
-			outarr[i][j] = 0;
+		inarr->arr[i] = (int *)malloc(c * sizeof(int));
 	}
-	return outarr;
-}
-
-int** fill2d(int r, int c, int fill)
-{
-	register int i, j;
-	int** outarr = (int **)malloc(r * sizeof(int *));
-	for(i=0; i<r; i++)
-	{
-		outarr[i] = (int *)malloc(c * sizeof(int));
-		for(j=0; j<c; j++)
-			outarr[i][j] = fill;
-	}
-	return outarr;
-}
-
-int** rot90(int **inarr, int r, int k)	
-/*
- * 	rotate 2d square matrix 90*k degrees
- *	k can be positive (clockwise rotation) or negative (anti-clockwise rotation)
- */
-{
-	/* r = rows, k = times */	
-	register int i, j, rot_iter;
-	int anticlkflag = 0;
-	if(k<0)
-	{
-		anticlkflag = 1;
-		k = -k;
-	}
-	k %= 4;
-
-	int** outarr = (int **)malloc(r * sizeof(int *));	
-	int** temparr = (int **)malloc(r * sizeof(int *));
-	for(i=0; i<r; i++)
-	{
-		outarr[i] = (int *)malloc(r * sizeof(int));
-		temparr[i] = (int *)malloc(r * sizeof(int));
-		for(j=0; j<r; j++)
-		{
-			temparr[i][j] = inarr[i][j];
-			outarr[i][j] = inarr[i][j];
-		}
-	}
-
-	for(rot_iter=0; rot_iter<k; rot_iter++)
-	{
-		for(i=0; i<r; i++)
-		{
-			for(j=0; j<r; j++)
-			{
-				if(!anticlkflag)
-					outarr[j][r-i-1] = temparr[i][j];
-				else
-					outarr[i][j] = temparr[j][r-i-1];
-			}
-		}
-
-		for(i=0; i<r; i++)
-			for(j=0; j<r; j++)
-				temparr[i][j] = outarr[i][j];
-	}
-
-	return outarr;
 }

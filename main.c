@@ -3,8 +3,8 @@
 int main()
 {
 	/* Testing reshape2d() */
-	int **arr;
-	int **reshaped_arr;
+	array2d arr;
+	array2d reshaped_arr;
 	int i, j, k;
 	int r, c, nr, nc;
 
@@ -14,41 +14,37 @@ int main()
 	printf("\nEnter size of resized array (nr nc) : ");
 	scanf(" %d %d", &nr, &nc);
 
-	arr = (int **)malloc(r * sizeof(int *));
-	for(i=0; i<r; i++)
-	{
-		arr[i] = (int *)malloc(c * sizeof(int));
-	}
+	alloc2d(&arr, r, c);
 
 	printf("\n[INFO] Original Array\n\n");
 	for(i=0, k=0; i<r; i++) 
 	{
 		for(j=0; j<c; j++)
 		{
-			arr[i][j] = ++k;
-			printf("%5d ", arr[i][j]);
+			arr.arr[i][j] = ++k;
+			printf("%5d ", arr.arr[i][j]);
 		}
 		printf("\n");
 	}
 
-	reshaped_arr = reshape2d(arr, r, c, nr, nc);
+	reshaped_arr = reshape2d(arr, nr, nc);
 
 	printf("\n[INFO] Reshaped Array\n\n");	
 	for(i=0; i<nr; i++) 
 	{
 		for(j=0; j<nc; j++)
 		{
-			printf("%5d ", reshaped_arr[i][j]);
+			printf("%5d ", reshaped_arr.arr[i][j]);
 		}
 		printf("\n");
 	}
 
 	/* Garbage collection */
-	numc_free2d(arr, r);
-	numc_free2d(reshaped_arr, nr);
+	free2d(&arr);
+	free2d(&reshaped_arr);
 
 	/* Testing zeros2d() */
-	int **zerosarr;
+	array2d zerosarr;
 	printf("\nEnter size of zeros array (r c) : ");
 	scanf(" %d %d", &r, &c);
 	zerosarr = zeros2d(r, c);
@@ -57,16 +53,16 @@ int main()
 	{
 		for(j=0; j<c; j++)
 		{
-			printf("%5d ", zerosarr[i][j]);
+			printf("%5d ", zerosarr.arr[i][j]);
 		}
 		printf("\n");
 	}
 
 	/* Garbage collection */
-	numc_free2d(zerosarr, r);
+	free2d(&zerosarr);
 
 	/* Testing fill2d() */
-	int **fillarr;
+	array2d fillarr;
 	int fill = 0;
 	printf("\nEnter size of filled array (r c) : ");
 	scanf(" %d %d", &r, &c);
@@ -78,17 +74,17 @@ int main()
 	{
 		for(j=0; j<c; j++)
 		{
-			printf("%5d ", fillarr[i][j]);
+			printf("%5d ", fillarr.arr[i][j]);
 		}
 		printf("\n");
 	}
 
 	/* Garbage collection */
-	numc_free2d(fillarr, r);
+	free2d(&fillarr);
 
 	/* Testing rot90() */
-	int **arr_square; 
-	int **rotated_arr;
+	array2d arr_square; 
+	array2d rotated_arr;
 	int n;
 
 	printf("\n[INFO] Original Array to be rotated will be auto-populated.\n");
@@ -97,38 +93,34 @@ int main()
 	printf("\nEnter number of times to be rotated (enter negative value for anti-clockwise rotation) : ");
 	scanf(" %d", &n);
 
-	arr_square = (int **)malloc(r * sizeof(int *));
-	for(i=0; i<r; i++)
-	{
-		arr_square[i] = (int *)malloc(r * sizeof(int));
-	}
+	alloc2d(&arr_square, r, r);
 
 	printf("\n[INFO] Original Array\n\n");
 	for(i=0, k=0; i<r; i++) 
 	{
 		for(j=0; j<r; j++)
 		{
-			arr_square[i][j] = ++k;
-			printf("%5d ", arr_square[i][j]);
+			arr_square.arr[i][j] = ++k;
+			printf("%5d ", arr_square.arr[i][j]);
 		}
 		printf("\n");
 	}
 
-	rotated_arr = rot90(arr_square, r, n);
+	rotated_arr = rot90(arr_square, n);
 
 	printf("\n[INFO] Rotated Array\n\n");	
 	for(i=0; i<r; i++) 
 	{
 		for(j=0; j<r; j++)
 		{
-			printf("%5d ", rotated_arr[i][j]);
+			printf("%5d ", rotated_arr.arr[i][j]);
 		}
 		printf("\n");
 	}
 
 	/* Garbage collection */
-	numc_free2d(arr_square, r);
-	numc_free2d(rotated_arr, r);
+	free2d(&arr_square);
+	free2d(&rotated_arr);
 
 	/* End all tests */
 	return 0;
