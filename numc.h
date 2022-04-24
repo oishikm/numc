@@ -23,6 +23,7 @@ int** _reshape2d(int **, int, int, int, int);
 int** _zeros2d(int, int);
 int** _fill2d(int, int, int);
 int** _rot90(int **, int, int);
+int** _slice2d(int**, int, int, int, int, int, int);
 
 void free2d(array2d *inarr)
 {
@@ -74,4 +75,13 @@ void alloc2d(array2d *inarr, int r, int c)
 	inarr->r = r;
 	inarr->c = c;
 	inarr->arr = _alloc2d(r, c);
+}
+
+array2d slice2d(array2d inarr, int x1, int x2, int y1, int y2)
+{
+	array2d outarr;
+	outarr.r = x2 - x1;
+	outarr.c = y2 - y1;
+	outarr.arr = _slice2d(inarr.arr, inarr.r, inarr.c, x1, x2, y1, y2);
+	return outarr;
 }

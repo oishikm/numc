@@ -14,7 +14,7 @@
 
 void numc_exception(char* message)
 {
-	printf("\n[ERROR] %s\n", message);
+	printf("\n[ERROR] NumCError: %s\n", message);
 	exit(0);
 }
 
@@ -50,7 +50,7 @@ int** _reshape2d(int **inarr, int r, int c, int nr, int nc)
 	if(r*c != nr*nc)
 	{
 		char msg[200];
-		sprintf(msg, "Error: Input and Output arrays do not have equal size."
+		sprintf(msg, "Input and Output arrays do not have equal size."
 				"\n[INFO] Input array has size %d elements while Output array has %d elements.\n", 
 				r*c, nr*nc);
 		numc_exception(msg);		
@@ -136,6 +136,49 @@ int** _rot90(int **inarr, int r, int k)
 			for(j=0; j<r; j++)
 				temparr[i][j] = outarr[i][j];
 	}
+
+	return outarr;
+}
+
+int** _slice2d(int** inarr, int r, int c, int x1, int x2, int y1, int y2)
+/*
+ *	Returns inarr[x1:x2-1, y1:y2-1] slice
+ */
+{
+	if(x1>r || y1>c || x2>r || y2>c)
+	{
+		char msg[200];
+		sprintf(msg, "Slice index/indices are larger than array size."
+				"\n[INFO] Input array has size axis_0 = %d and axis_1 = %d."
+				"\nWhereas slice indices are axis_0 = %d:%d and axis_1 = %d:%d.\n", 
+				r, c, x1, x2, y1, y2);
+		numc_exception(msg);		
+	}	
+
+	if(x1<0) x1 = 0;
+	if(x2<0) x2 = 0;
+	if(y1<0) y1 = 0;
+	if(y2<0) y2 = 0;
+
+	if(x2<=x1 || y2<=y1)
+	{
+		char msg[200];
+		sprintf(msg, "Negative or Zero slice size."
+				"\n[INFO] Slice sizes are axis_0 = %d and axis_1 = %d.\n", 
+				x2-x1, y2-y1);
+		numc_exception(msg);		
+	}	
+
+	int nr, nc;
+	register int i, j;
+
+	nr = x2 - x1;
+	nc = y2 - y1;
+	int** outarr = _alloc2d(nr, nc);
+
+	for(i=0; i<nr; i++)
+		for(j=0; j<nc; j++)
+			outarr[i][j] = inarr[i+x1][j+y1];
 
 	return outarr;
 }

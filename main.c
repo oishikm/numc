@@ -122,6 +122,46 @@ int main()
 	free2d(&arr_square);
 	free2d(&rotated_arr);
 
+	/* Testing slice2d() */
+	int x1, x2, y1, y2;
+	array2d sliced_arr;
+	printf("\n[INFO] Original Array to be sliced will be auto-populated.\n");
+	printf("\nEnter size of original array (r c) : ");
+	scanf(" %d %d", &r, &c);	
+	printf("\nEnter slice indices for axis_0 (x1 x2) : ");
+	scanf(" %d %d", &x1, &x2);
+	printf("\nEnter slice indices for axis_1 (y1 y2) : ");
+	scanf(" %d %d", &y1, &y2);
+
+	alloc2d(&arr, r, c);
+
+	printf("\n[INFO] Original Array\n\n");
+	for(i=0, k=0; i<r; i++) 
+	{
+		for(j=0; j<c; j++)
+		{
+			arr.arr[i][j] = ++k;
+			printf("%5d ", arr.arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	sliced_arr = slice2d(arr, x1, x2, y1, y2);
+
+	printf("\n[INFO] Sliced Array\n\n");	
+	for(i=0; i<sliced_arr.r; i++) 
+	{
+		for(j=0; j<sliced_arr.c; j++)
+		{
+			printf("%5d ", sliced_arr.arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	/* Garbage collection */
+	free2d(&arr);
+	free2d(&sliced_arr);
+
 	/* End all tests */
 	return 0;
 }
