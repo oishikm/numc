@@ -171,7 +171,7 @@ int** _rot90(int **inarr, int r, int k)
 
 int** _slice2d(int** inarr, int r, int c, int x1, int x2, int y1, int y2)
 /*
- *	Returns inarr[x1:x2-1, y1:y2-1] slice
+ *	Returns inarr[x1:x2, y1:y2] slice
  */
 {
 	if(x1>r || y1>c || x2>r || y2>c)
