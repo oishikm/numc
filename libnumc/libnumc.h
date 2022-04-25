@@ -164,6 +164,8 @@ int** _rot90(int **inarr, int r, int k)
 				temparr[i][j] = outarr[i][j];
 	}
 
+	_free2d(temparr, r);
+
 	return outarr;
 }
 
