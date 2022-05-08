@@ -8,5 +8,5 @@
  */
 
 #pragma once
-#include "libnumc/libnumc2d.h"
-#include "libnumc/libnumc3d.h"
+#include "libnumc2d.h"
+#include "libnumc3d.h"
