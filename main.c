@@ -169,9 +169,9 @@ int main()
 
 	printf("\n[INFO] Original 3D Array to be reshaped will be auto-populated.\n");
 	printf("\nEnter size of original array (r c d) : ");
-	scanf(" %d %d", &r, &c, &d);	
+	scanf(" %d %d %d", &r, &c, &d);	
 	printf("\nEnter size of resized array (nr nc nd) : ");
-	scanf(" %d %d", &nr, &nc, &nd);
+	scanf(" %d %d %d", &nr, &nc, &nd);
 
 	alloc3d(&arr_3d, r, c, d);
 
@@ -185,6 +185,7 @@ int main()
 				arr_3d.arr[i][j][l] = ++k;
 				printf("%5d ", arr_3d.arr[i][j][l]);
 			}
+			printf("\n");
 		}
 		printf("\n");
 	}
@@ -202,11 +203,12 @@ int main()
 			}
 			printf("\n");
 		}
+		printf("\n");
 	}
 
 	/* Garbage collection */
-	free2d(&arr_3d);
-	free2d(&reshaped_arr_3d);
+	free3d(&arr_3d);
+	free3d(&reshaped_arr_3d);
 
 	/* End all tests */
 	return 0;
