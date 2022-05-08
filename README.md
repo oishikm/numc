@@ -9,7 +9,7 @@ Functionalities completed:
 * slice2d
 
 Currently under development:  
-* 3D Array Support (branch: array3d)
+* 3D Array Support (branch: [`array3d`](https://github.com/oishikm/numc/tree/array3d))
   
   
 ## Suggested Compilation Recommendations
