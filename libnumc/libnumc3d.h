@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#include "libnumc/libnumc.h"
+#include "libnumc/libnumc2d.h"
 
 void numc_index_sanity_3d(int *r, int *c, int *d)
 {
