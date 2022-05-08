@@ -9,7 +9,7 @@ Functionalities completed:
 * slice2d
 
 Currently under development:  
-* None, please feel free to drop a suggestion.
+* reshape3d
   
   
 ## Suggested Compilation Recommendations
