@@ -2,7 +2,7 @@
  *	numc.h
  *	Inspired by python module "numpy".
  *
- *	Oishik Mukhopadhyay | 15 April 2022 
+ *	Oishik Mukhopadhyay | 15 April 2022
  *
  * 	numc.h provides a wrapper (array2d) for C's 2D Array (int[][] i.e. int**)
  * 	If you wish to use numc features directly on int**, use definitions from libnumc.h

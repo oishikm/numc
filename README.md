@@ -21,3 +21,7 @@ Currently under development:
   
 - ### Linux/WSL:  
   ```make```
+
+## Branch Information
+Please note that you are on `array3d` branch.  
+This is a development branch and hence might be unstable.
