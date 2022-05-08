@@ -4,7 +4,7 @@
  *
  *	Oishik Mukhopadhyay | 08 May 2022
  *
- *  Axis names for 3D Array: R, C, D = Row, Column, Depth
+ *	Axis names for 3D Array: R, C, D = Row, Column, Depth
  */
 
 #pragma once
