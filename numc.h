@@ -4,8 +4,12 @@
  *
  *	Oishik Mukhopadhyay | 15 April 2022
  *
- * 	numc.h provides a wrapper (array2d) for C's 2D Array (int[][] i.e. int**)
- * 	If you wish to use numc features directly on int**, use definitions from libnumc.h
+ * 	numc.h provides following wrappers:
+ *	1. A wrapper (array2d) for C's 2D Array (int[][] i.e. int**)
+ *	2. A wrapper (array3d) for C's 3D Array (int[][][] i.e. int***)
+ *
+ * 	If you wish to use numc features directly on int** or int***,
+ *	use definitions from libnumc2d.h or libnumc3d.h respectively.
  */
 
 #pragma once

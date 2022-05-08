@@ -5,6 +5,8 @@
  *	Oishik Mukhopadhyay | 08 May 2022
  *
  *	Axis names for 3D Array: R, C, D = Row, Column, Depth
+ *
+ *	Note: libnumc3d has some dependencies on libnumc2d
  */
 
 #pragma once
