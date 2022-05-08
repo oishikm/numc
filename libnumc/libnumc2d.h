@@ -4,7 +4,7 @@
  *
  *	Oishik Mukhopadhyay | 24 April 2022
  *
- *	Axis names for 3D Array: R, C = Row, Column
+ *	Axis names for 2D Array: R, C = Row, Column
  */
 
 #pragma once
