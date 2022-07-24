@@ -10,7 +10,7 @@ Functionalities completed:
 * reshape3d
 
 Currently under development:  
-* zeros3d
+* None, feel free to drop a suggestion / open an issue.
   
   
 ## Suggested Compilation Recommendations
